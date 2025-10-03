@@ -1,0 +1,42 @@
+name: Run Hamster Cipher Updater
+
+on:
+  schedule:
+    - cron: "15 12 * * *"   # 19:15 VN
+    - cron: "30 12 * * *"   # 19:30 VN
+    - cron: "45 12 * * *"   # 19:45 VN
+    - cron: "0 13 * * *"    # 20:00 VN
+    - cron: "15 13 * * *"   # 20:15 VN
+    - cron: "30 13 * * *"   # 20:30 VN
+    - cron: "45 13 * * *"   # 20:45 VN
+    - cron: "0 14 * * *"    # 21:00 VN
+    - cron: "15 14 * * *"   # 21:15 VN
+    - cron: "30 14 * * *"   # 21:30 VN
+    - cron: "45 14 * * *"   # 21:45 VN
+    - cron: "0 15 * * *"    # 22:00 VN
+  workflow_dispatch: # Cho phép chạy thủ công
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Run updater script
+        env:
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          python hamster_cipher_update.py
