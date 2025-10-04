@@ -132,14 +132,18 @@ def update_post(word, pretty_lines, old_content):
     print("[+] Updated Morse heading")
 
     # --- Insert new UL ---
-    new_ul = soup.new_tag("ul")
-    new_ul["class"] = ["wp-block-list"]
-    for line in pretty_lines:
-        li = soup.new_tag("li")
-        li.string = line
-        new_ul.append(li)
-    h3.insert_after(new_ul)
-    print("[+] Inserted new UL after H3")
+    next_tag = h3.find_next_sibling()
+    if next_tag and next_tag.name == "ul":
+        print("⚠️ Đã có UL ngay sau H3 -> bỏ qua không chèn mới")
+    else:
+        new_ul = soup.new_tag("ul")
+        new_ul["class"] = ["wp-block-list"]
+        for line in pretty_lines:
+            li = soup.new_tag("li")
+            li.string = line
+            new_ul.append(li)
+        h3.insert_after(new_ul)
+        print("[+] Inserted new UL after H3")
 
     new_content = str(soup)
 
