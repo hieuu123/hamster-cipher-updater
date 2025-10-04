@@ -20,11 +20,24 @@ def scrape_cipher_site1():
     soup = BeautifulSoup(r.text, "html.parser")
 
     # Word
-    word_tag = soup.find("p", class_="wp-elements-45117ef3eecde34c01c56e8b171064bb")
+    word_tag = soup.find(
+        "p",
+        class_=lambda c: c and "has-text-align-left" in c.split()
+    )
     if not word_tag:
-        raise RuntimeError("❌ Không tìm thấy thẻ Word (site1)")
-    word_text = word_tag.get_text(" ", strip=True)
-    word = re.sub(r"^\s*Word:\s*", "", word_text, flags=re.I).strip()
+        raise RuntimeError("❌ Không tìm thấy thẻ <p> chứa Word (site1)")
+    
+    strong_tag = word_tag.find("strong", string=lambda s: s and "Word:" in s)
+    if not strong_tag:
+        raise RuntimeError("❌ Không tìm thấy thẻ <strong>Word:</strong> (site1)")
+    
+    # Lấy phần text phía sau strong (ví dụ: BRICK)
+    word = strong_tag.next_sibling
+    if not word:
+        raise RuntimeError("❌ Không tìm thấy nội dung sau Word: (site1)")
+    
+    word = str(word).strip()
+    print(f"[+] Found Word: {word}")
 
     # Cipher lines
     cipher_tag = soup.find("p", class_="wp-elements-7faa1c3d689fab8e7ec95a21d23f2ed0")
