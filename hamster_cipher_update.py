@@ -8,8 +8,8 @@ import os
 WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
 WP_USERNAME = os.getenv("WP_USERNAME")
 WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD")
-POST_ID = 294389  # ID bài Hamster Kombat Cipher Code
-CHECK_WORD = "BRICK"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
+POST_ID = 294425  # ID bài Hamster Kombat Cipher Code
+CHECK_WORD = "VOICE"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
@@ -39,8 +39,14 @@ def scrape_cipher_site1():
     word = str(word).strip()
     print(f"[+] Found Word: {word}")
 
-    # Cipher lines
-    cipher_tag = soup.find("p", class_="wp-elements-7faa1c3d689fab8e7ec95a21d23f2ed0")
+    # Cipher lines (dựa vào p.has-text-color nằm ngay sau p chứa Word)
+    cipher_tag = None
+    for sibling in word_tag.find_next_siblings("p"):
+        classes = sibling.get("class", [])
+        if "has-text-color" in classes:
+            cipher_tag = sibling
+            break
+
     if not cipher_tag:
         raise RuntimeError("❌ Không tìm thấy thẻ cipher codes (site1)")
 
