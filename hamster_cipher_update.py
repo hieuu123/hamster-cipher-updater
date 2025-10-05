@@ -60,12 +60,16 @@ def scrape_cipher_site1():
             continue
         letter = m.group(1).upper()
         tail = m.group(2).strip()
+
         symbols = []
         for ch in tail:
-            if ch == ".":
+            # nhận cả dot glyph & biến thể
+            if ch in (".", "•", "∙", "·"):
                 symbols.append("•")
-            elif ch in ["_", "-", "–", "—", "−"]:
+            # nhận mọi biến thể dấu gạch
+            elif ch in ("_", "-", "–", "—", "−"):
                 symbols.append("—")
+            # bỏ qua khoảng trắng/khác
         pretty_lines.append(f"{letter} = {' '.join(symbols)}")
 
     print("[+] Scraped (site1)")
