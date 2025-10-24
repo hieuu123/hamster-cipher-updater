@@ -8,7 +8,7 @@ import os
 WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
 WP_USERNAME = os.getenv("WP_USERNAME")
 WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD")
-POST_ID = 298308  # ID bài Hamster Kombat Cipher Code
+POST_ID = 298456  # ID bài Hamster Kombat Cipher Code
 CHECK_WORD = "CLAW"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
 
 # ================= SCRAPE SITE 1 =================
