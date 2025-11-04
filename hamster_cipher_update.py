@@ -64,10 +64,10 @@ def scrape_cipher_site1():
         symbols = []
         for ch in tail:
             # nhận cả dot glyph & biến thể
-            if ch in (".", "•", "∙", "·"):
+            if ch in (".", "•", "∙", "·", "●"):
                 symbols.append("•")
             # nhận mọi biến thể dấu gạch
-            elif ch in ("_", "-", "–", "—", "−"):
+            elif ch in ("_", "-", "–", "—", "−", "━", "─", "﹣", "－"):
                 symbols.append("—")
             # bỏ qua khoảng trắng/khác
         pretty_lines.append(f"{letter} = {' '.join(symbols)}")
