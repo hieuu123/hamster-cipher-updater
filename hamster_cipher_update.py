@@ -8,12 +8,12 @@ import os
 WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
 WP_USERNAME = os.getenv("WP_USERNAME")
 WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD")
-POST_ID = 300443  # ID bài Hamster Kombat Cipher Code
-CHECK_WORD = "SOUND"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
+POST_ID = 300558  # ID bài Hamster Kombat Cipher Code
+CHECK_WORD = "GASA"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
-    url = "https://miningcombo.com/hamsters/"
+    url = "https://miningcombo.com/hamster/"
     print(f"[+] Scraping cipher from {url}")
     r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
     r.raise_for_status()
