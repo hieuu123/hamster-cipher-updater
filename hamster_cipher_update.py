@@ -14,7 +14,7 @@ CHECK_WORD = "GAS"   # Word hiện có trên bài. Chỉ update khi scrape != CH
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
-    url = "https://miningcombo.com/hamsters/"
+    url = "https://miningcombo.com/hamster/"
     print(f"[+] Scraping cipher from {url}")
     r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
     r.raise_for_status()
