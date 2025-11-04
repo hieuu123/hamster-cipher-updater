@@ -13,7 +13,7 @@ CHECK_WORD = "GASA"   # Word hiện có trên bài. Chỉ update khi scrape != C
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
-    url = "https://miningcombo.com/hamster/"
+    url = "https://miningcombo.com/hamsters/"
     print(f"[+] Scraping cipher from {url}")
     r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
     r.raise_for_status()
