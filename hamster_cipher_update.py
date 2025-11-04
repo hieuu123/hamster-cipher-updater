@@ -3,6 +3,7 @@ import re
 import requests
 from bs4 import BeautifulSoup, NavigableString
 import os
+import cloudscraper
 
 # ================= CONFIG =================
 WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
@@ -79,20 +80,8 @@ def scrape_cipher_site1():
 def scrape_cipher_site2():
     url = "https://hamster-combo.com/daily-morse-code-hamster-kombat/"
     print(f"[+] Scraping cipher from {url}")
-    headers = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/121.0.0.0 Safari/537.36"
-    ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://google.com",
-    "DNT": "1",
-    "Connection": "keep-alive",
-    "Upgrade-Insecure-Requests": "1",
-    }
-    r = requests.get(url, timeout=20, headers=headers)
+    scraper = cloudscraper.create_scraper(browser={"browser": "chrome", "platform": "windows", "mobile": False})
+    r = scraper.get(url, timeout=20)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
 
