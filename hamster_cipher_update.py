@@ -9,8 +9,8 @@ import cloudscraper
 WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
 WP_USERNAME = os.getenv("WP_USERNAME")
 WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD")
-POST_ID = 302156  # ID bài Hamster Kombat Cipher Code
-CHECK_WORD = "DOG"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
+POST_ID = 302392  # ID bài Hamster Kombat Cipher Code
+CHECK_WORD = "MASK"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
