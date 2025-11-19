@@ -10,7 +10,7 @@ WP_URL = "https://blog.mexc.com/wp-json/wp/v2/posts"
 WP_USERNAME = os.getenv("WP_USERNAME")
 WP_APP_PASSWORD = os.getenv("WP_APP_PASSWORD")
 POST_ID = 303534  # ID bài Hamster Kombat Cipher Code
-CHECK_WORD = LAN"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
+CHECK_WORD = "LAN"   # Word hiện có trên bài. Chỉ update khi scrape != CHECK_WORD
 
 # ================= SCRAPE SITE 1 =================
 def scrape_cipher_site1():
